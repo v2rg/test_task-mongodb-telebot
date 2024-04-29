@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 
 from dotenv import load_dotenv
@@ -31,7 +32,7 @@ async def get_result(message):
     if validated is True:
         # await bot.send_message(message.chat.id, 'Поиск...')
         result = await get_response(eval(message.text))
-        await bot.send_message(message.chat.id, result, parse_mode='HTML')
+        await bot.send_message(message.chat.id, json.dumps(result), parse_mode='HTML')
     else:
         await bot.send_message(message.chat.id, validated)
 
